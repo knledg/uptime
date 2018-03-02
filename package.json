@@ -1,0 +1,14 @@
+{
+  "name": "@jwdotjs/uptime",
+  "version": "1.0.0",
+  "description": "HTTP uptime alerts that notify failed requests to Sentry",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "distraught": "^2.0.0"
+  }
+}
