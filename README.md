@@ -41,3 +41,5 @@ uptime({
   ],
 }).init();
 ```
+
+![Result In Console](https://i.imgur.com/9ezZwYX.png)
