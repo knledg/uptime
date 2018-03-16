@@ -1,4 +1,4 @@
-const {request} = require('distraught');
+const {request, logErr} = require('distraught');
 
 const DEFAULT_INTERVAL = 60000;
 function uptime(config = {}) {
@@ -12,8 +12,16 @@ function uptime(config = {}) {
         payload.method = 'GET';
       }
 
+      payload.logErrors = false; // turn off default logging
+
       return request(payload)
-        .catch((err) => {});
+        .catch((err) => {
+          let statusOrMessage = err.message;
+          if (err.response && err.response.status) {
+            statusOrMessage = `status code ${err.response.status}`;
+          }
+          logErr(new Error(`${payload.url} responded with ${statusOrMessage}`), {url: payload.url, debug: payload.debug, data: payload.data || ''});
+        });
     },
 
     init() {

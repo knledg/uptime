@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "distraught": "^2.0.0"
+    "distraught": "^2.1.0"
   }
 }
