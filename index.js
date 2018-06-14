@@ -2,9 +2,9 @@ const { request, logErr } = require("distraught");
 
 const DEFAULT_INTERVAL = 60000;
 const MAX_ATTEMPTS = 2;
-function uptime(config = {}, attempt = 1) {
+function uptime(config = {}) {
   return {
-    request(payload) {
+    request(payload, attempt = 1) {
       if (!payload.url) {
         throw new Error("URL is required for uptime monitoring requests");
       }
@@ -18,8 +18,8 @@ function uptime(config = {}, attempt = 1) {
       return request(payload).catch(err => {
         if (
           attempt <
-          (this.config.hasOwnProperty("maxAttempts")
-            ? this.config.maxAttempts
+          (config.hasOwnProperty("maxAttempts")
+            ? config.maxAttempts
             : MAX_ATTEMPTS)
         ) {
           return this.request(payload, attempt + 1);
@@ -38,7 +38,6 @@ function uptime(config = {}, attempt = 1) {
     },
 
     init() {
-      this.config = config;
       if (!config) {
         throw new Error(
           "Uptime config must be specified. See docs for details."

@@ -24,8 +24,8 @@ uptime({
       },
       interval?: 60000,
     },
-    maxAttempts: 2, // how many total times a request should fail consecutively before we log an error
   ],
+  maxAttempts: 2, // how many total times a request should fail consecutively before we log an error
 }).init();
 ```
 
